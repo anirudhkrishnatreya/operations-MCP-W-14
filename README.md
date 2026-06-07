@@ -24,6 +24,20 @@ This system replaces manual operational lookups with an automated agent workflow
 
 ---
 
+## Demo & Pitch Videos
+
+### Pitch Presentation (Idea, Pain Points & Solution)
+This video walks through the business pain points of manual operations research, the core concept behind the Operations Assistant, our multi-agent solution, and target use cases.
+
+[![Watch the pitch video](https://cdn.loom.com/sessions/thumbnails/36be91ddba8e41c184f246e3d31eb264-2e248f0756f81a36.gif)](https://www.loom.com/share/36be91ddba8e41c184f246e3d31eb264)
+
+### Live System Demo (Technical Walkthrough)
+This video demonstrates the working system end-to-end, showing the multi-agent execution, tools usage via MCP, human-in-the-loop validation, and generated outputs.
+
+[![Watch the demo video](https://cdn.loom.com/sessions/thumbnails/e008d887287b4cb5a7595cfb49b5570f-3506973381462012.gif)](https://www.loom.com/share/e008d887287b4cb5a7595cfb49b5570f)
+
+---
+
 ## Interactive Web UI (Designed by Anirudh Sharma)
 
 The web dashboard provides a complete control center to view and operate the system:
