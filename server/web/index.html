@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium multi-agent Operations Assistant Web Interface architected by Anirudh Sharma. Query standard operating procedures, monitor stock inventory levels, and run automated research pipelines.">
+    <title>Operations Assistant Dashboard | Made by Anirudh Sharma</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="glass-bg-glow"></div>
+    <div class="glass-bg-glow glow-secondary"></div>
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-logo">
+                <div class="logo-icon">
+                    <i data-lucide="cpu"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Operations Assistant</h1>
+                    <span class="designer-badge">Architected & Engineered by Anirudh Sharma</span>
+                </div>
+            </div>
+            <div class="header-status">
+                <div class="status-indicator" id="mcp-server-status">
+                    <span class="status-dot offline"></span>
+                    <span class="status-label">Core MCP Server: Checking...</span>
+                </div>
+                <div class="status-indicator" id="web-server-status">
+                    <span class="status-dot online"></span>
+                    <span class="status-label">UI Console: Active</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="app-main">
+            <!-- SIDEBAR -->
+            <aside class="app-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-btn active" id="btn-console" onclick="switchTab('console')">
+                        <i data-lucide="terminal"></i>
+                        <span>Business Console</span>
+                    </button>
+                    <button class="nav-btn" id="btn-documents" onclick="switchTab('documents')">
+                        <i data-lucide="file-text"></i>
+                        <span>SOP Documents</span>
+                        <span class="badge" id="doc-count">0</span>
+                    </button>
+                    <button class="nav-btn" id="btn-inventory" onclick="switchTab('inventory')">
+                        <i data-lucide="database"></i>
+                        <span>Inventory Stocks</span>
+                        <span class="badge" id="inv-count">0</span>
+                    </button>
+                    <button class="nav-btn" id="btn-reports" onclick="switchTab('reports')">
+                        <i data-lucide="file-check"></i>
+                        <span>Generated Reports</span>
+                        <span class="badge" id="report-count">0</span>
+                    </button>
+                    <button class="nav-btn" id="btn-traces" onclick="switchTab('traces')">
+                        <i data-lucide="activity"></i>
+                        <span>Telemetry & Traces</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="developer-info">
+                        <div class="avatar">AS</div>
+                        <div>
+                            <p class="dev-name">Anirudh Sharma</p>
+                            <p class="dev-title">System Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CONTENT AREA -->
+            <section class="app-content">
+                <!-- WARNING BANNER IF MCP OFFLINE -->
+                <div class="warning-banner" id="mcp-offline-warning" style="display: none;">
+                    <i data-lucide="alert-triangle"></i>
+                    <div>
+                        <strong>Core MCP Server is Offline!</strong>
+                        <p>Start the server in your terminal: <code>uv run python server/mcp_server.py</code> so that agents can access tools.</p>
+                    </div>
+                </div>
+
+                <!-- TAB: CONSOLE -->
+                <div class="tab-panel active" id="panel-console">
+                    <div class="console-grid">
+                        <!-- CONTROL CARD -->
+                        <div class="card control-card">
+                            <h2>Run Business Query</h2>
+                            <p class="card-desc">Execute the multi-agent CrewAI research workflow. Agents will fetch resources, query database, compile outputs, and request validation.</p>
+                            
+                            <div class="preset-queries">
+                                <span class="preset-label">Query Suggestions:</span>
+                                <div class="preset-buttons">
+                                    <button class="preset-btn" onclick="usePreset('What is the return policy for headphones?')">Return Policy</button>
+                                    <button class="preset-btn" onclick="usePreset('Query stock levels and unit price for Laptop Pro 15')">Inventory Details</button>
+                                    <button class="preset-btn" onclick="usePreset('Explain Late Delivery ticket details and summarize findings')">Late Deliveries</button>
+                                </div>
+                            </div>
+
+                            <form id="query-form" onsubmit="runCrew(event)">
+                                <div class="input-group">
+                                    <textarea id="question-input" placeholder="Enter instructions or operational questions for the crew..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary" id="btn-run-crew">
+                                    <i data-lucide="play"></i>
+                                    <span>Initialize Research Crew</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- AGENT PIPELINE VISUALIZER -->
+                        <div class="card pipeline-card">
+                            <h2>Agent Workflow Sequence</h2>
+                            <div class="pipeline-steps">
+                                <div class="pipeline-step" id="step-research">
+                                    <div class="step-icon"><i data-lucide="search"></i></div>
+                                    <div class="step-details">
+                                        <h3>Operations Researcher</h3>
+                                        <p>Queries CSV inventory, reads txt files, scrapes web data</p>
+                                    </div>
+                                    <span class="step-status">Idle</span>
+                                </div>
+                                <div class="pipeline-step" id="step-write">
+                                    <div class="step-icon"><i data-lucide="pen-tool"></i></div>
+                                    <div class="step-details">
+                                        <h3>Report Writer</h3>
+                                        <p>Synthesizes raw evidence into standard Markdown format</p>
+                                    </div>
+                                    <span class="step-status">Idle</span>
+                                </div>
+                                <div class="pipeline-step" id="step-verify">
+                                    <div class="step-icon"><i data-lucide="check-circle-2"></i></div>
+                                    <div class="step-details">
+                                        <h3>Fact Checker (HITL)</h3>
+                                        <p>Validates report against facts and prompts for human check</p>
+                                    </div>
+                                    <span class="step-status">Idle</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STREAM CONSOLE -->
+                        <div class="card console-stream-card">
+                            <div class="console-header">
+                                <div class="console-title-group">
+                                    <div class="console-dot-group">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                    </div>
+                                    <h2>Live Agent Activity Logs</h2>
+                                </div>
+                                <div class="console-actions">
+                                    <label class="toggle-container">
+                                        <input type="checkbox" id="auto-scroll-check" checked>
+                                        <span class="toggle-label">Auto-scroll</span>
+                                    </label>
+                                    <button class="btn-secondary btn-sm" onclick="clearConsole()">Clear Logs</button>
+                                </div>
+                            </div>
+                            <div class="console-body" id="console-output">
+                                <div class="console-placeholder">
+                                    <i data-lucide="terminal"></i>
+                                    <p>Logs will stream here in real-time when you trigger the research crew.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HUMAN INTERACTIVE MODAL OVERLAY -->
+                    <div class="modal-overlay" id="hitl-modal">
+                        <div class="modal-card">
+                            <div class="modal-header">
+                                <div class="modal-header-title">
+                                    <i data-lucide="shield-alert" class="alert-icon"></i>
+                                    <h3>Human-in-the-Loop Validation Needed</h3>
+                                </div>
+                                <span class="badge badge-alert">Input Required</span>
+                            </div>
+                            <div class="modal-body">
+                                <p>The **Fact Checker** agent has prepared the report draft and is waiting for your review. Please examine the log output or click approve to proceed.</p>
+                                <div class="modal-form">
+                                    <textarea id="hitl-input" placeholder="Type 'y' to approve, or describe adjustments/corrections needed..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn-secondary" onclick="submitHITL('y')">
+                                    <i data-lucide="thumbs-up"></i>
+                                    <span>Approve Report (y)</span>
+                                </button>
+                                <button class="btn-primary btn-alert" onclick="submitHITLCustom()">
+                                    <i data-lucide="corner-down-right"></i>
+                                    <span>Send Corrections</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: DOCUMENTS -->
+                <div class="tab-panel" id="panel-documents">
+                    <div class="search-view-layout">
+                        <div class="sidebar-list card">
+                            <div class="search-bar">
+                                <i data-lucide="search"></i>
+                                <input type="text" id="doc-search" placeholder="Search standard operating procedures..." oninput="filterDocuments()">
+                            </div>
+                            <div class="list-container" id="documents-list">
+                                <!-- JS populated -->
+                            </div>
+                        </div>
+                        <div class="content-viewer card">
+                            <div class="viewer-header" id="doc-viewer-header">
+                                <h2>SOP Document Viewer</h2>
+                                <p>Select a document from the left list to view its contents.</p>
+                            </div>
+                            <div class="viewer-body markdown-content" id="doc-viewer-body">
+                                <div class="viewer-placeholder">
+                                    <i data-lucide="file-text"></i>
+                                    <p>No document loaded</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: INVENTORY -->
+                <div class="tab-panel" id="panel-inventory">
+                    <div class="card full-width-card">
+                        <div class="inventory-header">
+                            <div>
+                                <h2>Product Inventory Database</h2>
+                                <p class="section-desc">Reading from CSV structured order data. Search products and SKU codes below.</p>
+                            </div>
+                            <div class="search-bar table-search">
+                                <i data-lucide="search"></i>
+                                <input type="text" id="inv-search" placeholder="Search by name, SKU, status..." oninput="filterInventory()">
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product Name</th>
+                                        <th>SKU</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Status</th>
+                                        <th>Last Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventory-table-body">
+                                    <!-- JS populated -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: REPORTS -->
+                <div class="tab-panel" id="panel-reports">
+                    <div class="search-view-layout">
+                        <div class="sidebar-list card">
+                            <h2>Generated Reports</h2>
+                            <p class="section-desc">Reports written to <code>outputs/</code> by Fact Checker.</p>
+                            <div class="list-container" id="reports-list">
+                                <!-- JS populated -->
+                            </div>
+                        </div>
+                        <div class="content-viewer card">
+                            <div class="viewer-header" id="report-viewer-header">
+                                <h2>Markdown Operations Report</h2>
+                                <p>Select a saved report to read.</p>
+                            </div>
+                            <div class="viewer-body markdown-content" id="report-viewer-body">
+                                <div class="viewer-placeholder">
+                                    <i data-lucide="file-check"></i>
+                                    <p>No report loaded</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: TRACES -->
+                <div class="tab-panel" id="panel-traces">
+                    <div class="search-view-layout">
+                        <div class="sidebar-list card">
+                            <h2>Telemetry & Traces</h2>
+                            <p class="section-desc">Logs and metadata saved under the <code>traces/</code> directory.</p>
+                            <div class="list-container" id="traces-list">
+                                <!-- JS populated -->
+                            </div>
+                        </div>
+                        <div class="content-viewer card">
+                            <div class="viewer-header" id="trace-viewer-header">
+                                <h2>Trace Metadata File</h2>
+                                <p>Select a trace file to examine execution details.</p>
+                            </div>
+                            <div class="viewer-body markdown-content" id="trace-viewer-body">
+                                <div class="viewer-placeholder">
+                                    <i data-lucide="activity"></i>
+                                    <p>No trace loaded</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
