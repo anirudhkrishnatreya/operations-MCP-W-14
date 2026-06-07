@@ -1,0 +1,25 @@
+research_task:
+  description: >
+    Answer this operations question: '{question}'
+
+    Use the available tools (such as searching local documents, reading inventory records, or fetching external URLs) to find evidence. List every source (document name, record ID, or URL) you consulted. If a tool returns nothing useful, state that explicitly — do NOT guess.
+  expected_output: >
+    A bullet-point list of findings, each with its source (document filename, record ID, or URL). If nothing was found, say so.
+
+write_task:
+  description: >
+    Using only the Researcher's findings, write a short operations report that answers the original question. Format: a one-paragraph summary, then a Sources section listing every document and record cited.
+  expected_output: >
+    A markdown-formatted report with a summary paragraph and a Sources section.
+
+verification_task:
+  description: >
+    Review the drafted operations report (from the Report Writer) against the Researcher's findings. If any claims are unsupported, flag them and correct the report. Do NOT call any tools to save the report yet.
+  expected_output: >
+    A verified markdown-formatted report with a summary paragraph and a Sources section.
+
+save_task:
+  description: >
+    Take the verified operations report from the Verification task and save it to the outputs folder by calling the save_report tool.
+  expected_output: >
+    Confirmation that save_report was called successfully.
