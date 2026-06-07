@@ -26,11 +26,9 @@ This system replaces manual operational lookups with an automated agent workflow
 
 ## System Demo Video
 
-Here is a technical walkthrough and demo of the operations assistant running in the browser:
+Click the button below to watch the technical walkthrough and live system demo of the Operations Assistant running in the browser:
 
-[![Watch Demo Video](https://img.shields.io/badge/▶%20Watch%20Demo%20Video-click%20here-indigo?style=for-the-badge)](https://github.com/anirudhkrishnatreya/operations-MCP-W-14/blob/main/assets/my_video.mp4)
-
-![System Demo Video](assets/my_video.mp4)
+[![Watch Demo Video](https://img.shields.io/badge/▶%20Watch%20System%20Demo%20Video-click%20here-indigo?style=for-the-badge)](https://www.loom.com/share/9017f4bd7c63470db588dd9a923382f1)
 
 ---
 
