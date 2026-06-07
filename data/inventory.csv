@@ -1,0 +1,11 @@
+id,product_name,sku,quantity,unit_price,status,last_updated
+1,Headphones X200,HX-200,45,89.99,in_stock,2024-11-01
+2,Laptop Pro 15,LP-15,12,1299.99,in_stock,2024-11-02
+3,USB-C Hub,USB-4P,0,34.99,out_of_stock,2024-10-28
+4,Wireless Mouse WM-01,WM-01,78,24.99,in_stock,2024-11-03
+5,Mechanical Keyboard K1,MK-K1,23,129.99,in_stock,2024-11-04
+6,Monitor Stand,MS-02,0,45.50,out_of_stock,2024-10-15
+7,Webcam 1080p,WC-1080,105,59.99,in_stock,2024-11-05
+8,Ergonomic Chair,EC-99,5,249.99,low_stock,2024-11-01
+9,Desk Mat Large,DM-L,40,19.99,in_stock,2024-11-02
+10,USB Flash Drive 64GB,UFD-64,200,12.99,in_stock,2024-11-05
