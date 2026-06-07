@@ -1,0 +1,30 @@
+[project]
+name = "operations-assistant"
+version = "0.1.0"
+description = "A multi-agent Operations Assistant built with CrewAI and Model Context Protocol (MCP)."
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+  "mcp>=1.0.0",
+  "crewai[google-genai]>=1.14.6",
+  "crewai-tools[mcp]>=1.14.6",
+  "python-dotenv>=1.0.0",
+  "google-generativeai>=0.8.0",
+  "litellm>=1.40.0",
+  "pytest>=8.0.0",
+  "opentelemetry-api>=1.20.0",
+  "opentelemetry-sdk>=1.20.0",
+  "opentelemetry-exporter-otlp>=1.20.0",
+  "langfuse<3.0.0",
+  "fastapi>=0.136.3",
+  "uvicorn>=0.48.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.5.1",
+    "pre-commit>=4.6.0",
+]
+
+[tool.uv]
+prerelease = "allow"
