@@ -1,0 +1,6 @@
+Ticket ID: 001
+Issue: Damaged item
+Customer: John Doe
+Product: Headphones X200
+Status: Resolved
+Summary: Customer received Headphones X200 with a cracked casing. Advised customer of return policy for damaged items. Free return label issued. Replacement unit shipped upon receipt of the damaged item.

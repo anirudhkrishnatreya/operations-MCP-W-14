@@ -1,0 +1,6 @@
+Vendor Name: Acme Corp
+Products supplied: Packaging materials, boxes, tape.
+Contact: orders@acmecorp.example.com
+Phone: 1-800-555-0199
+Contact Hours: Monday to Friday, 9:00 AM - 5:00 PM EST.
+Notes: Orders must be placed before 1 PM for same-day processing. Standard terms are Net 30.

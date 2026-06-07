@@ -1,0 +1,8 @@
+Product Name: Headphones X200
+SKU: HX-200
+Type: Over-ear wireless headphones
+Battery Life: Up to 40 hours
+Features: Active Noise Cancellation (ANC), Bluetooth 5.2, built-in microphone.
+Warranty: 1 year limited warranty.
+Weight: 250g
+Price: $89.99

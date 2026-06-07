@@ -1,0 +1,6 @@
+Ticket ID: 002
+Issue: Wrong item received
+Customer: Jane Smith
+Product: Wireless Mouse WM-01
+Status: Open
+Summary: Customer ordered Laptop Pro 15 but received Wireless Mouse WM-01 instead. The warehouse team has been notified to investigate the fulfillment error. We have requested the customer to return the incorrect item using a provided prepaid label. The correct laptop will be dispatched immediately.

@@ -1,0 +1,11 @@
+Product Name: Laptop Pro 15
+SKU: LP-15
+Type: High-performance laptop
+Processor: Intel Core i7 12th Gen
+RAM: 16GB DDR4
+Storage: 512GB NVMe SSD
+Display: 15.6-inch FHD (1920x1080) IPS
+Battery: 70Wh, up to 10 hours
+Weight: 1.8kg
+Warranty: 2 years limited warranty.
+Price: $1299.99

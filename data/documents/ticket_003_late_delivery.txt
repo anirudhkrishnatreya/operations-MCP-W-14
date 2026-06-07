@@ -1,0 +1,6 @@
+Ticket ID: 003
+Issue: Late delivery
+Customer: Bob Johnson
+Product: USB-C Hub
+Status: Resolved
+Summary: Customer's order for USB-C Hub was delayed by 3 days. Investigation showed standard shipping (USPS) was used but there were weather delays. Apologized to the customer and offered a $10 credit for their next purchase.
