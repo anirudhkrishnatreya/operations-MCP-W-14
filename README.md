@@ -24,6 +24,14 @@ This system replaces manual operational lookups with an automated agent workflow
 
 ---
 
+## System Demo Video
+
+Here is a technical walkthrough and demo of the operations assistant running in the browser:
+
+<video src="assets/my_video.mp4" width="100%" controls></video>
+
+---
+
 ## Interactive Web UI (Designed by Anirudh Sharma)
 
 The web dashboard provides a complete control center to view and operate the system:
